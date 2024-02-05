@@ -1,4 +1,3 @@
-
 function Profile() {
   return `<x-navbar src="/src/views/navbar/Navbar"></x-navbar>
   <!-- Profile Section -->
@@ -22,15 +21,15 @@ function Profile() {
   <section class="container mx-auto px-4 py-8">
     <!-- Posts -->
     <div class="grid grid-cols-3 gap-4">
-      <div class="bg-white shadow rounded-lg p-4">
-        <img src="palette.png" class="w-full" alt="Post" />
-      </div>
-      <div class="bg-white shadow rounded-lg p-4">
-        <img src="palette.png" class="w-full" alt="Post" />
-      </div>
-      <div class="bg-white shadow rounded-lg p-4">
-        <img src="palette.png" class="w-full" alt="Post" />
-      </div>
+    <x-post src="/src/views/post/Post"  auther="amir" title="hello0" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec metus
+    ullamcorper, hendrerit sem nec, dictum nulla. Integer efficitur risus ac enim consectetur, in
+    ullamcorper ex pellentesque."></x-post>
+    <x-post src="/src/views/post/Post"  auther="amir" title="hello0" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec metus
+    ullamcorper, hendrerit sem nec, dictum nulla. Integer efficitur risus ac enim consectetur, in
+    ullamcorper ex pellentesque."></x-post>
+    <x-post src="/src/views/post/Post"  auther="amir" title="hello0" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec metus
+    ullamcorper, hendrerit sem nec, dictum nulla. Integer efficitur risus ac enim consectetur, in
+    ullamcorper ex pellentesque."></x-post>
     </div>
   </section>
   `;
