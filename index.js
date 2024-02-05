@@ -1,11 +1,18 @@
-import { defineRoutes } from "@core/router/Router";
-import { setupListeners } from "@core/index";
-import Home from "src/pages/Home";
-import Profile from "src/pages/Profile";
+import Router from "@core/router/Router";
+import CoreServices from "@core/index";
+import Home from "src/pages/home/Home";
+import Profile from "src/pages/profile/Profile";
+import Login from "src/pages/auth/login/Login";
+import Register from "src/pages/auth/register/Register";
+import setupGlobalConfigs from "@core/GlobalSources";
 
-setupListeners();
+CoreServices.setupListeners();
 
-defineRoutes([
+Router.defineRoutes([
   { name: "home", component: Home },
   { name: "profile", component: Profile },
+  { name: "login", component: Login },
+  { name: "register", component: Register },
 ]);
+
+setupGlobalConfigs();

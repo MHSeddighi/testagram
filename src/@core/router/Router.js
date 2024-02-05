@@ -30,9 +30,9 @@ function getRouteComponent(routeName) {
 }
 
 export default {
-  addRoute,
-  defineRoutes,
-  getRoutes,
-  routeExists,
-  getRouteComponent,
+  addRoute: addRoute,
+  defineRoutes: defineRoutes,
+  getRoutes: getRoutes,
+  routeExists: routeExists,
+  getRouteComponent: getRouteComponent,
 };
