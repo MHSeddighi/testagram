@@ -3,7 +3,7 @@ function addRoute(name, component) {}
 
 function defineRoutes(routesArray) {
   routesArray.forEach((r, index) => {
-    routes.push({ name: r.name, component: r.component });
+    routes.push({ name: r.name, component: r.component, auth: r.auth });
   });
 }
 
@@ -20,10 +20,10 @@ function routeExists(routeName) {
   return false;
 }
 
-function getRouteComponent(routeName) {
+function getRoute(routeName) {
   for (let r of routes) {
     if (r.name === routeName) {
-      return r.component;
+      return r;
     }
   }
   return null;
@@ -34,5 +34,5 @@ export default {
   defineRoutes: defineRoutes,
   getRoutes: getRoutes,
   routeExists: routeExists,
-  getRouteComponent: getRouteComponent,
+  getRoute: getRoute,
 };

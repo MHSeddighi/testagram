@@ -57,15 +57,19 @@ function Login() {
   })
   .then(response => {
     if (response.ok) {
-      alert('Login successful!');
-      Navigation.navigateTo('home');
-      form.reset();
-    } else {
-      alert('Invalid username or password!');
+      return response.json();
     }
+    return response.json().then((res)=>{
+      throw new Error(res.error)
+    });
+  }).then(response=>{
+    const userDataString = JSON.stringify({username,password});
+    localStorage.setItem('userData', userDataString);
+    alert(response.message);
+    Navigation.navigateTo('profile');
   })
-  .catch(error => {
-    console.error('Login failed:', error);
+  .catch(err => {
+    alert(err);
   });
   }
 </script>

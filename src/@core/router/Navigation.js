@@ -58,15 +58,37 @@ function navigateTo(url) {
   renderPageComponent(url);
 }
 
+function checkUserIsLoggedIn() {
+  const userDataString = localStorage.getItem("userData");
+  if (userDataString) {
+    return true;
+    // const userData = JSON.parse(userDataString);
+
+    // Use the user data as needed
+    console.log(userData.name); // 'John Doe'
+    console.log(userData.email); // 'johndoe@example.com'
+  }
+  return false;
+}
+
 function renderPageComponent(url) {
   const path = removeSlashFromPath(url);
-  const component = CoreServices.getRouteComponent(path);
-  if (component) {
-    const htmlContent = component();
-    window.history.pushState({}, "", `/${path}`);
-    loadPageComponentContent(htmlContent);
+  const route = CoreServices.getRoute(path);
+  console.log(route);
+  if (checkUserIsLoggedIn() == route.auth) {
+    if (route.component) {
+      const htmlContent = route.component();
+      window.history.pushState({}, "", `/${path}`);
+      loadPageComponentContent(htmlContent);
+    } else {
+      navigateTo(`404`, false);
+    }
   } else {
-    navigateTo(`404`, false);
+    if (route.auth) {
+      navigateTo("login");
+    } else {
+      navigateTo("home");
+    }
   }
 }
 
@@ -82,6 +104,7 @@ async function renderComponent(element) {
     const parsedDocument = parser.parseFromString(html, "text/html");
     const newElement = parsedDocument.body.childNodes[0];
     element.parentNode.replaceChild(newElement, element);
+    reloadScriptTags();
   } catch (e) {
     console.error(e);
   }
@@ -120,6 +143,7 @@ const Navigation = {
   isCustomTag,
   loadPageComponentContent,
   removeSlashFromPath,
+  reloadScriptTags,
 };
 
 export default Navigation;
